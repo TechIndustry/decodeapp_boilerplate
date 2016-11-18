@@ -30,16 +30,18 @@ decode App Boilerplate for NodeHeroku Dev Setup
   1. ```$ git clone https://github.com/yourusername/decodeapp_boilerplate.git myapp```
   1. ```$ cd myapp```  
   1. ```$ npm install```  
-  1. ```$ node server```
+  1. Start the server with ```$ node server```
   1. Open browser and navigate to http://localhost:4000 or http://127.0.0.1:4000
+  1. Hit ```Ctrl + C``` to stop the server.
 
 <strong>Tasks - Upload code from local to remote repo</strong>
 
-  1. ```$ git add .```
+  1. Create new repo ```myapp```
+  1. Going back to your gitbash type ```$ git add .```
   1. ```$ git config user.email "youremail@example.com"```
   1. ```$ git config user.name "yourgithubname"```
   1. ```$ git commit -m "first commit"```
-  1. ```$ git remote add origin https://github.com/yourgithub-username/myapp.git```
+  1. ```$ git remote set-url origin https://github.com/yourgithub-username/myapp.git```
   1. ```$ git push -u origin master```
   1. Type your github username then password.
   1. Done. Reload your repo and verify if all files have been updated.
