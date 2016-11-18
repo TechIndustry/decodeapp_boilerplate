@@ -41,7 +41,7 @@ decode App Boilerplate for NodeHeroku Dev Setup
   1. ```$ git config user.email "youremail@example.com"```
   1. ```$ git config user.name "yourgithubname"```
   1. ```$ git commit -m "first commit"```
-  1. ```$ git remote set-url origin https://github.com/yourgithub-username/myapp.git```
+  1. ```$ git remote set-url origin https://github.com/yourusername/myapp.git```
   1. ```$ git push -u origin master```
   1. Type your github username then password.
   1. Done. Reload your repo and verify if all files have been updated.
