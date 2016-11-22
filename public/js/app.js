@@ -1,5 +1,36 @@
 "use strict";
 
+
+class App{
+	constructor(){
+	}
+	render(html, component){
+
+		component.innerHTML += html;
+	}
+
+	reRender(html, component){
+
+		component.innerHTML = html;
+	}
+}
+
+class Component extends App{
+	constructor(){
+
+		super();
+	}
+}
+
+let component = new Component();
+
+
+
+
+
+/*
+"use strict";
+
 class App{
 	constructor(){
 		this.recipe = [
@@ -785,7 +816,7 @@ class Component extends App{
 
 let component = new Component();
 component.recipeLayout();
-
+*/
 
 //////////////////////////////////////
 
