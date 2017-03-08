@@ -1,8 +1,32 @@
 "use strict";
 
-
 class App{
 	constructor(){
+		this.users = [
+			{
+				"id":1,
+				"usn":"15000871300",
+				"password":"15000871300",
+				"firstname":"Reese",
+				"lastname":"Dela Cruz"
+			},
+			{
+				"id":2,
+				"usn":"15000779500",
+				"password":"15000779500",
+				"firstname":"John",
+				"lastname":"Finney"
+			}
+		];
+
+		this.reservation=[
+			{
+				"id":1,
+				"userid":1,
+				"lockernum":10,
+				"expire":"03-1"
+			}
+		]
 	}
 	render(html, component){
 
@@ -20,10 +44,128 @@ class Component extends App{
 
 		super();
 	}
+
+	loginPage(){
+		let html = `
+			<h3 class="app_name">Locker App</h3>
+			<h6 class="app_desc">A Hybrid Demo App</h6>
+			<div class="center-align">
+				<img class="app_logo" src="img/clyde.png" />
+			</div>
+			<div class="login_input">
+				<div class="row">				
+					<div class="col s12 center-align">
+						<input id="txtUSN" style="background-color:red;color:white;width:80%;padding-left:15px;padding-right:15px;font-size:18px;text-align:center;" maxlength="11" type="text" placeholder="ENTER USN" />
+					</div>
+					<div class="col s12 center-align">
+						<input id="txtPASS" style="background-color:red;color:white;width:80%;padding-left:15px;padding-right:15px;font-size:18px;text-align:center;" maxlength="20" type="password" placeholder="ENTER PASSWORD" />
+					</div>
+					<div class="col s12 center-align">
+						<button onclick="component.verifyLogin()" class="waves-effect waves-light btn" >LOGIN</button>
+					</div>
+				</div>				
+			</div>
+		`;
+		this.reRender(html,$('#app')[0]);
+	}
+
+	verifyLogin(){
+		let txtUSN = $('#txtUSN').val();
+		let txtPASS = $('#txtPASS').val();
+		let msg = "Invalid Account";
+		let errFlag = true;
+		let student = {};
+		// console.log(this.users);
+		for(let i=0;i<this.users.length;i++){
+			// console.log(this.users[i].usn);
+			if(txtUSN==this.users[i].usn){
+				if(txtPASS==this.users[i].password){
+					errFlag = false;
+					student = this.users[i];
+					break;
+				}
+				else{
+					errFlag = true;
+					msg = "Invalid Password";
+				}
+			}
+			else{
+				errFlag = true;				
+			}
+		}		
+
+
+		if(errFlag){
+			Materialize.toast(msg, 4000);
+		}
+		else{
+			this.preloader();
+			setTimeout(function(){
+				component.studentDashboard(student);
+			},1000);
+		}		
+	}
+
+	studentDashboard(student){
+		console.log(student);
+		let html = `			
+			<h1>Welcome ${student.firstname}</h1>
+		`;
+		this.reRender(html,$('#app')[0]);
+	}
+
+	preloader(){
+		let html= `
+			<center style="margin-top:50%;">
+			<div class="preloader-wrapper big active">
+			<div class="spinner-layer spinner-blue">
+			<div class="circle-clipper left">
+			<div class="circle"></div>
+			</div><div class="gap-patch">
+			<div class="circle"></div>
+			</div><div class="circle-clipper right">
+			<div class="circle"></div>
+			</div>
+			</div>
+
+			<div class="spinner-layer spinner-red">
+			<div class="circle-clipper left">
+			<div class="circle"></div>
+			</div><div class="gap-patch">
+			<div class="circle"></div>
+			</div><div class="circle-clipper right">
+			<div class="circle"></div>
+			</div>
+			</div>
+
+			<div class="spinner-layer spinner-yellow">
+			<div class="circle-clipper left">
+			<div class="circle"></div>
+			</div><div class="gap-patch">
+			<div class="circle"></div>
+			</div><div class="circle-clipper right">
+			<div class="circle"></div>
+			</div>
+			</div>
+
+			<div class="spinner-layer spinner-green">
+			<div class="circle-clipper left">
+			<div class="circle"></div>
+			</div><div class="gap-patch">
+			<div class="circle"></div>
+			</div><div class="circle-clipper right">
+			<div class="circle"></div>
+			</div>
+			</div>
+			</div>
+			</center>
+		`;
+		this.reRender(html,$('#app')[0]);
+	}
 }
 
 let component = new Component();
-
+component.loginPage();
 
 
 
